@@ -17,17 +17,13 @@ similarity(Sentence1, Sentence2, Similarity) :-
     Similarity is CommonTokenCount / max(TokenCount1, TokenCount2).
 
 % Find the database sentence that is most similar to the input sentence
-% Compare input sentence to each database sentence
-% Calculate similarity scores
-% Sort scores descending
-% Return the top matching sentence
 most_similar(InputSentence, MostSimilarSentence) :-
     findall(Similarity-Sentence,
         (sentence(Sentence), similarity(InputSentence, Sentence, Similarity)),
-        Similarities),
-    keysort(Similarities, SortedSimilarities),
-    reverse(SortedSimilarities, ReversedSimilarities),
-    [MostSimilarSentence|_] = ReversedSimilarities.
+        Similarities),                          % Compare input sentence to each database sentence
+    keysort(Similarities, SortedSimilarities), % Elements are arranged in order from low to high similarity value
+    reverse(SortedSimilarities, ReversedSimilarities),  % Sort scores descending
+    [MostSimilarSentence|_] = ReversedSimilarities. % Return the top matching sentence
 
 
 % Modify the input sentence to include synonyms
