@@ -16,7 +16,7 @@ replace_word(Word, Synonyms, Synonym) :-
 % Generate a sentence with replaced words
 generate_similar_sentence(OriginalSentence, SimilarSentence) :-
     split_string(OriginalSentence, " ", " ", OriginalWords),
-    maplist(replace_word_in_wordlist, OriginalWords, Synonyms, SimilarWords),
+    maplist(replace_word_in_wordlist, OriginalWords, _Synonyms, SimilarWords),
     atomic_list_concat(SimilarWords, ' ', SimilarSentence).
 
 % Replace a word in a list with a synonym
@@ -45,3 +45,4 @@ pretty_print_sentences([Sentence|Rest]) :-
 
 % Example usage:
 
+%generate_20_similar_sentences("I want to book a flight to Paris", X),pretty_print_sentences(X).
