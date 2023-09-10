@@ -21,13 +21,14 @@ similarity(Sentence1, Sentence2, Similarity) :-
 % Calculate similarity scores
 % Sort scores descending
 % Return the top matching sentence
-most_similar(Input, MostSimilarSentence) :-
+most_similar(InputSentence, MostSimilarSentence) :-
     findall(Similarity-Sentence,
-        (sentence(Sentence), similarity(Input, Sentence, Similarity)),
+        (sentence(Sentence), similarity(InputSentence, Sentence, Similarity)),
         Similarities),
     keysort(Similarities, SortedSimilarities),
     reverse(SortedSimilarities, ReversedSimilarities),
-    [MostSimilarity-MostSimilarSentence|_] = ReversedSimilarities.
+    [MostSimilarSentence|_] = ReversedSimilarities.
+
 
 % Modify the input sentence to include synonyms
 modify_input_sentence(Input, Modified) :-
@@ -41,5 +42,4 @@ find_similar(Input,MostSimilar):-
     most_similar(Modified, MostSimilar).
 
 % Query with the modified input sentence
-%?- modify_input_sentence("That is a happy person", ModifiedInput),
- %  most_similar(ModifiedInput, MostSimilar).
+%?- find_similar("That is a happy person", Output).
