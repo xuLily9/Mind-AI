@@ -8,11 +8,6 @@ synonyms("flight", ["flight", "airfare", "journey", "trip", "voyage"]).
 synonyms("to", ["to", "towards", "for", "in the direction of"]).
 synonyms("Paris", ["Paris", "the City of Light", "the French capital"]).
 
-% Replace a word with a randomly selected synonym
-% It takes a Word, list of Synonyms, and binds Synonym to a random synonym that is not equal to the original Word.
-replace_word(Word, Synonyms, Synonym) :-
-    member(Synonym, Synonyms),
-    Synonym \= Word.
 
 % Generate a sentence with replaced words
 generate_similar_sentence(OriginalSentence, SimilarSentence) :-
